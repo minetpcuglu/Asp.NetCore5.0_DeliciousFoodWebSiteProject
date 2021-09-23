@@ -33,6 +33,7 @@ namespace BusinessLayer.Concrete
             return _foodDal.GetAll();
         }
 
+     
         public Food GetById(int id)
         {
             return _foodDal.GetById(id);

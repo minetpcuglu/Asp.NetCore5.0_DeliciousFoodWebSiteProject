@@ -13,6 +13,7 @@ namespace BusinessLayer.Abstract
         void Delete(Food food);
         void Update(Food food);
         List<Food> GetAll();
+
         Food GetById(int id);
     }
 }
