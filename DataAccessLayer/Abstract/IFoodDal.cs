@@ -9,5 +9,6 @@ namespace DataAccessLayer.Abstract
 {
   public  interface IFoodDal:IGenericDal<Food>
     {
+        List<Food> GetListWithCategory();
     }
 }

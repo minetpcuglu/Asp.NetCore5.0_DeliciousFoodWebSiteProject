@@ -14,6 +14,8 @@ namespace BusinessLayer.Abstract
         void Update(Food food);
         List<Food> GetAll();
 
+        List<Food> GetListWithCategory();
+
         Food GetById(int id);
     }
 }

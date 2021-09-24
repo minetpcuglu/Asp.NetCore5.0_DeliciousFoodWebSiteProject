@@ -6,15 +6,14 @@
 
 <h1>Category List</h1>
 <br />
-<table class="table table-bordered">
+<table class="table table-striped  table-hover table-bordered">
     <tr>
         <th>ID</th>
         <th>Food Name</th>
-        @*<th>Category Name</th>*@
+        <th>Category Name</th>
         <th>Image</th>
-        <th>Delete</th>
-        <th>Update</th>
-        <th>Detail</th>
+
+        <th style="width:240px">Update / Delete / Detail</th>
     </tr>
 
     @foreach (var item in Model)
@@ -22,12 +21,18 @@
         <tr>
             <th>@item.FoodId</th>
             <td>@item.FName</td>
-            <!--<td>-->@*@item.Category.CName*@<!--</td>-->
+
+            <td>
+              @item.Category.CName
+            </td>
+
             <td>@item.FImageUrl</td>
->
-            <td><a href="#" class="btn btn-danger">Delete</a></td>
-            <td><a href="#" class="btn btn-success">Update</a></td>
-            <td><a href="#" class="btn btn-info">Detail</a></td>
+
+            <td>
+                <a href="#" class="btn btn-danger">Delete</a>
+                <a href="#" class="btn btn-success">Update</a>
+                <a href="#" class="btn btn-info">Detail</a>
+            </td>
         </tr>
     }
 </table>

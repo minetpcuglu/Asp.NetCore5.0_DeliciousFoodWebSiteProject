@@ -39,6 +39,11 @@ namespace BusinessLayer.Concrete
             return _foodDal.GetById(id);
         }
 
+        public List<Food> GetListWithCategory()
+        {
+            return _foodDal.GetListWithCategory();
+        }
+
         public void Update(Food food)
         {
             _foodDal.Update(food);
