@@ -1,0 +1,27 @@
+﻿@model Category
+@{
+    ViewData["Title"] = "CategoryAdd";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1> Add Category</h1>
+<hr />
+
+<form method="post" asp-controller="Category" asp-action="CategoryAdd">
+    <div class="form-group">
+        <label asp-for="CName"> Category Name</label>
+        <input asp-for="CName" class="form-control" />
+        <span asp-validation-for="CName" class="text-danger"></span>
+
+    </div>
+    <div class="form-group">
+        <label asp-for="CDescription">Category Description </label>
+        <textarea asp-for="CDescription" class="form-control"></textarea>
+        <span asp-validation-for="CDescription" class="text-info"></span>
+
+    </div>
+
+   
+   
+        <button type="submit" href="/Category/Index/"  class="btn btn-outline-primary"><b>Sumbit</b></button>
+</form>
