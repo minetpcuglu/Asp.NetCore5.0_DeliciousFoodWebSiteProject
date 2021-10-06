@@ -29,9 +29,31 @@ namespace Asp.NetCore5._0_DeliciousFoodWebSiteProject.Controllers
         [HttpPost]
         public IActionResult CategoryAdd(Category category)
         {
-            //categoryManager.Add(category);
+            categoryManager.Add(category);
             //TempData["alertmessage"] = $"{category.CName} Added Category";
-         
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult CategoryUpdate(int id)
+        {
+            var value = categoryManager.GetById(id);
+            return View(value);
+        }
+        [HttpPost]
+        public IActionResult CategoryUpdate(Category category)
+        {
+            category.CStatus = true;
+            categoryManager.Update(category);
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult DeleteCategory(int id)
+        {
+            var value = categoryManager.GetById(id);
+            value.CStatus = false;
+            categoryManager.Delete(value);
             return RedirectToAction("Index");
         }
     }

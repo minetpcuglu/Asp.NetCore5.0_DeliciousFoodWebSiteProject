@@ -20,12 +20,13 @@ namespace BusinessLayer.Concrete
 
         public void Add(Category category)
         {
+            category.CStatus = true;
             _categoryDal.insert(category);
         }
 
         public void Delete(Category category)
         {
-            _categoryDal.Delete(category);
+            _categoryDal.Update(category);
         }
 
         public List<Category> GetAll()

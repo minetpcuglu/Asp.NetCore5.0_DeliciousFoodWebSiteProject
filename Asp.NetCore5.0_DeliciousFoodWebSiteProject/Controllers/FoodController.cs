@@ -44,5 +44,33 @@ namespace Asp.NetCore5._0_DeliciousFoodWebSiteProject.Controllers
             foodManager.Add(food);
             return RedirectToAction("Index");
         }
+
+        public IActionResult DeleteFood(int id)
+        {
+            var value = foodManager.GetById(id);
+            foodManager.Delete(value);
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult FoodUpdate(int id)
+        {
+            List<SelectListItem> categoryList = (from x in _context.Categories.ToList()
+                                                 select new SelectListItem
+                                                 {
+                                                     Text = x.CName,
+                                                     Value = x.CategoryId.ToString()
+                                                 }).ToList();
+            ViewBag.category = categoryList;
+            var value = foodManager.GetById(id);
+            return View(value);
+        }
+        [HttpPost]
+        public IActionResult FoodUpdate(Food food)
+        {
+           
+            foodManager.Update(food);
+            return RedirectToAction("Index");
+        }
     }
 }

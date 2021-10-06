@@ -10,13 +10,13 @@
 <form method="post" asp-controller="Category" asp-action="CategoryAdd">
     <div class="form-group">
         <label asp-for="CName"> Category Name</label>
-        <input asp-for="CName" class="form-control" />
+        <input asp-for="CName" class="form-control"  />
         <span asp-validation-for="CName" class="text-danger"></span>
 
     </div>
     <div class="form-group">
         <label asp-for="CDescription">Category Description </label>
-        <textarea asp-for="CDescription" class="form-control"></textarea>
+        <textarea asp-for="CDescription"  class="form-control" ></textarea>
         <span asp-validation-for="CDescription" class="text-info"></span>
 
     </div>

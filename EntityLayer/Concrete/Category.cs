@@ -17,6 +17,7 @@ namespace EntityLayer.Concrete
 
         [StringLength(850)]
         public string CDescription { get; set; }
+        public bool CStatus { get; set; }
 
         public ICollection<Food> Foods { get; set; }
 

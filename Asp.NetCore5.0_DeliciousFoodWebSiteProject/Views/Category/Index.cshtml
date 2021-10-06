@@ -11,8 +11,9 @@
         <th>ID</th>
         <th>Category Name</th>
         <th>Description</th>
-        <th>Delete</th>
-        <th>Update</th>
+        <th>Status</th>
+        <th>Delete/Update</th>
+
     </tr>
 
     @foreach (var item in Model)
@@ -21,8 +22,11 @@
             <td>@item.CategoryId</td>
             <td>@item.CName</td>
             <td>@item.CDescription</td>
-            <td><a href="#" class="btn btn-danger">Delete</a></td>
-            <td><a href="#" class="btn btn-success">Update</a></td>
+            <td>@item.CStatus</td>
+            <td>
+            <a href="/Category/DeleteCategory/@item.CategoryId" class="btn btn-danger">Delete</a>
+            <a href="/Category/CategoryUpdate/@item.CategoryId" class="btn btn-success">Update</a>
+            </td>
         </tr>
     }
 </table>

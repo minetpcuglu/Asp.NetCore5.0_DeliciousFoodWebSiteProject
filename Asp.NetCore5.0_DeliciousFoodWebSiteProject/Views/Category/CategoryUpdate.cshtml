@@ -1,0 +1,26 @@
+﻿@model Category 
+@{
+    ViewData["Title"] = "CategoryUpdate";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<h2>Category Update Page</h2>
+<br />
+<form method="post" asp-controller="Category" asp-action="CategoryUpdate">
+    <input type="hidden" name="CategoryId" value="@Model.CategoryId" />
+    <div class="form-group">
+        <label asp-for="CName"> <b>Category:</b></label>
+        <input asp-for="CName" class="form-control" value="@Model.CName" />
+        @*<span asp-validation-for="CName" class="text-danger"></span>*@
+    </div>
+    <div class="form-group">
+        <label asp-for="CDescription"> <b>Description:</b></label>
+        <input asp-for="CDescription" class="form-control" value="@Model.CDescription" />
+        @*<span asp-validation-for="CName" class="text-danger"></span>*@
+    </div>
+
+
+
+    <button type="submit" class="btn btn-outline-success"><b>Değişiklikleri Kaydet</b></button>
+</form>
+

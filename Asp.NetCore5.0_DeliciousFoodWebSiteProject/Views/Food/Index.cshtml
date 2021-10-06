@@ -16,21 +16,21 @@
         <th style="width:240px">Update / Delete / Detail</th>
     </tr>
 
-    @foreach (var item in Model)
+    @foreach (var food in Model)
     {
         <tr>
-            <th>@item.FoodId</th>
-            <td>@item.FName</td>
+            <th>@food.FoodId</th>
+            <td>@food.FName</td>
 
             <td>
-              @item.Category.CName
+              @food.Category.CName
             </td>
 
-            <td>@item.FImageUrl</td>
+            <td>@food.FImageUrl</td>
 
             <td>
-                <a href="#" class="btn btn-danger">Delete</a>
-                <a href="#" class="btn btn-success">Update</a>
+                <a href="/Food/DeleteFood/@food.FoodId" class="btn btn-danger">Delete</a>
+                <a href="/Food/FoodUpdate/@food.FoodId" class="btn btn-success">Update</a>
                 <a href="#" class="btn btn-info">Detail</a>
             </td>
         </tr>
