@@ -1,7 +1,9 @@
 ﻿using BusinessLayer.Concrete;
+using BusinessLayer.ValidationRules.FluentValidation;
 using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -13,6 +15,7 @@ namespace Asp.NetCore5._0_DeliciousFoodWebSiteProject.Controllers
     public class CategoryController : Controller
     {
         CategoryManager categoryManager = new CategoryManager(new EfCategoryRepository());
+        CategoryValidator rules = new CategoryValidator();
       
         public IActionResult Index()
         {
@@ -29,10 +32,24 @@ namespace Asp.NetCore5._0_DeliciousFoodWebSiteProject.Controllers
         [HttpPost]
         public IActionResult CategoryAdd(Category category)
         {
-            categoryManager.Add(category);
-            //TempData["alertmessage"] = $"{category.CName} Added Category";
+            ValidationResult result = rules.Validate(category);
+            if (result.IsValid)
+            {
+                categoryManager.Add(category);
+                
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
+                }
+            }
+            return View();
+
+           
         }
 
         [HttpGet]

@@ -1,7 +1,9 @@
 ﻿using BusinessLayer.Concrete;
+using BusinessLayer.ValidationRules.FluentValidation;
 using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
@@ -15,6 +17,7 @@ namespace Asp.NetCore5._0_DeliciousFoodWebSiteProject.Controllers
     {
         Context _context = new Context();
         FoodManager foodManager = new FoodManager(new EfFoodRepository());
+        FoodValidator rules = new FoodValidator();
        
 
         public IActionResult Index()
@@ -68,9 +71,23 @@ namespace Asp.NetCore5._0_DeliciousFoodWebSiteProject.Controllers
         [HttpPost]
         public IActionResult FoodUpdate(Food food)
         {
-           
-            foodManager.Update(food);
-            return RedirectToAction("Index");
+            ValidationResult result = rules.Validate(food);
+            
+            if (result.IsValid)
+            {
+
+                foodManager.Update(food);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
+                }
+            }
+            return View();
+        
         }
     }
 }
