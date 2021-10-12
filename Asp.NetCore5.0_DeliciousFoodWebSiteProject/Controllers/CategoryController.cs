@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace Asp.NetCore5._0_DeliciousFoodWebSiteProject.Controllers
 {
@@ -17,10 +18,10 @@ namespace Asp.NetCore5._0_DeliciousFoodWebSiteProject.Controllers
         CategoryManager categoryManager = new CategoryManager(new EfCategoryRepository());
         CategoryValidator rules = new CategoryValidator();
       
-        public IActionResult Index()
+        public IActionResult Index(int page=1)
         {
             var value = categoryManager.GetAll();
-            return View(value);
+            return View(value.ToPagedList(page,5));
         }
 
         [HttpGet]

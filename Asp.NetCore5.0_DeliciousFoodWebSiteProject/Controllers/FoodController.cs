@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace Asp.NetCore5._0_DeliciousFoodWebSiteProject.Controllers
 {
@@ -20,10 +21,10 @@ namespace Asp.NetCore5._0_DeliciousFoodWebSiteProject.Controllers
         FoodValidator rules = new FoodValidator();
        
 
-        public IActionResult Index()
+        public IActionResult Index(int page=1)
         {
-            var value = foodManager.GetListWithCategory(); ;
-            return View(value);
+            var value = foodManager.GetListWithCategory();
+            return View(value.ToPagedList(page,5));
 
         }
 
