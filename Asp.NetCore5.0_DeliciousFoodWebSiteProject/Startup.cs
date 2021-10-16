@@ -59,8 +59,9 @@ namespace Asp.NetCore5._0_DeliciousFoodWebSiteProject
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication(); //login 
             app.UseAuthorization();
+          
 
             app.UseEndpoints(endpoints =>
             {
