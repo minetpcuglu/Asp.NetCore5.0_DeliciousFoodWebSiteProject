@@ -4,6 +4,7 @@ using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace Asp.NetCore5._0_DeliciousFoodWebSiteProject.Controllers
     {
         CategoryManager categoryManager = new CategoryManager(new EfCategoryRepository());
         CategoryValidator rules = new CategoryValidator();
+      
       
         public IActionResult Index(int page=1)
         {
