@@ -15,5 +15,10 @@ namespace Asp.NetCore5._0_DeliciousFoodWebSiteProject.Controllers
         {
             return View();
         }
+
+        public IActionResult CategoryDetail() //ürüne göre category getirme
+        {
+            return View();
+        }
     }
 }

@@ -1,5 +1,4 @@
-﻿
-@model IEnumerable<Food>
+ Food da ürünlerde indirimli fiyatı gösterip diğerinin üstünnün çizili olması.
 <div class="agile_top_brands_grids">
     @foreach (var food in Model)
     {
@@ -15,7 +14,7 @@
                                 <div class="snipcart-thumb">
                                     <a href="single.html"><img  style="width:250px; height:200px;" title=" " alt=" " src="@food.FImageUrl" /></a>
                                     <p>@food.FDescription</p>
-                                    <h4>@food.FPrice ₺ </h4><h6>Stok:@food.FStock</h6>
+                                    <h4>$7.99 <span>$10.00</span></h4> ******************************* burası
                                 </div>
                                 <div class="snipcart-details top_brand_home_details">
                                     <form action="checkout.html" method="post">
@@ -29,7 +28,7 @@
                                             <input type="hidden" name="currency_code" value="USD" />
                                             <input type="hidden" name="return" value=" " />
                                             <input type="hidden" name="cancel_return" value=" " />
-                                            <input type="submit" name="submit" value="Sepete Ekle" class="button" />
+                                            <input type="submit" name="submit" value="Add to cart" class="button" />
                                         </fieldset>
 
                                     </form>
