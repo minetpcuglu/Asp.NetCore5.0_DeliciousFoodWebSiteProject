@@ -15,6 +15,7 @@ namespace BusinessLayer.Abstract
         List<Food> GetAll();
 
         List<Food> GetListWithCategory();
+        List<Food> FoodListGetByCategory(int id); //Include metodu kullanımı için yazar göre listeleme
 
         Food GetById(int id);
     }
