@@ -9,14 +9,11 @@ namespace BusinessLayer.Abstract
 {
    public interface IFoodService
     {
-        void Add(Food food);
-        void Delete(Food food);
-        void Update(Food food);
-        List<Food> GetAll();
+      
 
         List<Food> GetListWithCategory();
         List<Food> FoodListGetByCategory(int id); //Include metodu kullanımı için yazar göre listeleme
 
-        Food GetById(int id);
+  
     }
 }

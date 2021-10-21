@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Concrete
 {
-    public class CategoryManager : ICategoryService
+    public class CategoryManager : IGenericService<Category>
     {
         ICategoryDal _categoryDal;
 
@@ -37,6 +37,11 @@ namespace BusinessLayer.Concrete
         public Category GetById(int id)
         {
           return  _categoryDal.GetById(id);
+        }
+
+        public List<Category> GetList()
+        {
+            throw new NotImplementedException();
         }
 
         public void Update(Category category)

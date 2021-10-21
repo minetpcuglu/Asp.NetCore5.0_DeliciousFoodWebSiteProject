@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Concrete
 {
-    public class FoodManager : IFoodService
+    public class FoodManager : IGenericService<Food>
     {
         IFoodDal _foodDal;
 
@@ -52,6 +52,11 @@ namespace BusinessLayer.Concrete
         public void Update(Food food)
         {
             _foodDal.Update(food);
+        }
+
+        public List<Food> GetList()
+        {
+            throw new NotImplementedException();
         }
     }
 }

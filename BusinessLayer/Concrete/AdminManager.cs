@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Concrete
 {
-    public class AdminManager : IAdminService
+    public class AdminManager : IGenericService<Admin>
     {
         IAdminDal _adminDal;
 
@@ -37,6 +37,11 @@ namespace BusinessLayer.Concrete
         public Admin GetById(int id)
         {
           return  _adminDal.GetById(id);
+        }
+
+        public List<Admin> GetList()
+        {
+            throw new NotImplementedException();
         }
 
         public void Update(Admin admin)
