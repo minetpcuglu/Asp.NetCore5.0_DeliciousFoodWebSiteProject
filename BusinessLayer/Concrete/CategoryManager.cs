@@ -44,6 +44,11 @@ namespace BusinessLayer.Concrete
             throw new NotImplementedException();
         }
 
+        public List<Category> GetSearchCategory(string name) //*** sıkıntılı 
+        {
+            return _categoryDal.GetListAll(x=>x.CName==name);
+        }
+
         public void Update(Category category)
         {
             _categoryDal.Update(category);

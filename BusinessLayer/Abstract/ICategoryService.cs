@@ -9,7 +9,7 @@ namespace BusinessLayer.Abstract
 {
     public interface ICategoryService
     {
-   
+        List<Category> GetSearchCategory(string name); //Include metodu kullanımı için kategoriye göre listeleme
 
     }
 }

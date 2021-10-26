@@ -20,8 +20,12 @@ namespace Asp.NetCore5._0_DeliciousFoodWebSiteProject.Controllers
         CategoryValidator rules = new CategoryValidator();
       
       
-        public IActionResult Index(int page=1)
+        public IActionResult Index(/*string search,*/int page=1)  //sıkıntılı
         {
+            //if (!string.IsNullOrEmpty(search))
+            //{
+            //    return View(categoryManager.GetSearchCategory(search));
+            //}
             var value = categoryManager.GetAll();
             return View(value.ToPagedList(page,5));
         }

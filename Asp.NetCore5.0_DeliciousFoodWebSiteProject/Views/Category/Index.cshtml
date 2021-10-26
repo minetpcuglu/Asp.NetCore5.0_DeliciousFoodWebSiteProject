@@ -6,6 +6,11 @@
 
 <h1>Category List</h1>
 <br />
+@*@using (Html.BeginForm())
+            {
+                <p>Food Name: @Html.TextBox("search")</p>
+                <input  type="submit" value="find"/>
+            }*@
 <table class="table table-bordered">
     <tr>
         <th>ID</th>
@@ -28,7 +33,7 @@
             <a href="/Category/CategoryUpdate/@item.CategoryId" class="btn btn-success">Update</a>
             </td>
         </tr>
-    }
+        }
 </table>
 <br />
 @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))
