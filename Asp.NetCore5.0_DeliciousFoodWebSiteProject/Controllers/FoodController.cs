@@ -4,10 +4,12 @@ using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using X.PagedList;
@@ -19,12 +21,12 @@ namespace Asp.NetCore5._0_DeliciousFoodWebSiteProject.Controllers
         Context _context = new Context();
         FoodManager foodManager = new FoodManager(new EfFoodRepository());
         FoodValidator rules = new FoodValidator();
-       
 
-        public IActionResult Index(int page=1)
+
+        public IActionResult Index(int page = 1)
         {
             var value = foodManager.GetListWithCategory();
-            return View(value.ToPagedList(page,5));
+            return View(value.ToPagedList(page, 10));
 
         }
 
@@ -56,6 +58,7 @@ namespace Asp.NetCore5._0_DeliciousFoodWebSiteProject.Controllers
             return RedirectToAction("Index");
         }
 
+
         [HttpGet]
         public IActionResult FoodUpdate(int id)
         {
@@ -69,15 +72,29 @@ namespace Asp.NetCore5._0_DeliciousFoodWebSiteProject.Controllers
             var value = foodManager.GetById(id);
             return View(value);
         }
+
+
         [HttpPost]
-        public IActionResult FoodUpdate(Food food)
+        public async Task<IActionResult> FoodUpdate(Food food, IFormFile file)
         {
             ValidationResult result = rules.Validate(food);
-            
             if (result.IsValid)
             {
+                if (file != null)
+                {
+                    var extension = Path.GetExtension(file.FileName); //uzantiya ulasmak //.jpg .png
+                    var randomFileName = string.Format($"{Guid.NewGuid()}{extension}");  //random bir sayı ile resim dosyaları birbirine çakışmaması
+                    var path = Path.Combine(Directory.GetCurrentDirectory() , "wwwroot\\img" , randomFileName);
+                    food.FImageUrl = randomFileName;
+
+                    using (var stream = new FileStream(path, FileMode.Create))  //using içinde olması isimiz bittiginde otamatşk silinecek olması.
+                    {
+                    await file.CopyToAsync(stream);
+                    }
+                }
 
                 foodManager.Update(food);
+           
                 return RedirectToAction("Index");
             }
             else
@@ -88,7 +105,7 @@ namespace Asp.NetCore5._0_DeliciousFoodWebSiteProject.Controllers
                 }
             }
             return View();
-        
+
         }
     }
 }

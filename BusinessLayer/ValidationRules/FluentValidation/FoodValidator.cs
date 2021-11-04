@@ -14,7 +14,7 @@ namespace BusinessLayer.ValidationRules.FluentValidation
         {
             RuleFor(x => x.FName).NotEmpty().WithMessage("Category cannot be blank");
             RuleFor(x => x.FDescription).NotEmpty().WithMessage("Description cannot be blank");
-            RuleFor(x => x.FImageUrl).NotEmpty().WithMessage("Image Url cannot be blank");
+      
             RuleFor(x => x.FPrice).NotEmpty().WithMessage("Price cannot be blank");
             RuleFor(x => x.FStock).NotEmpty().WithMessage("Stock cannot be blank");
             RuleFor(x => x.FName).MaximumLength(20).MinimumLength(3).WithMessage("Please enter a valid Food");
